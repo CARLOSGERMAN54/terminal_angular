@@ -1,0 +1,28 @@
+.contenedor-login{
+    padding-top: 5%;
+}
+
+.form-login{
+    background-color: rgb(238, 239, 245);
+    margin: auto;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+input{
+    height: 2em;
+    margin: 1%;
+}
+
+[nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }

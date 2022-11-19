@@ -1,0 +1,116 @@
+
+<div class="contenedor-componente">
+  <div class="contenedor-form" [formGroup]="formGroup">
+    <h3 class="titulo-form">REGISTRO DE USUARIOS</h3>
+    <div class="row-form">
+      <div class="field-form">
+        <label for="">Cedula</label>
+        <input nz-input type="text" formControlName="idUsuario" />
+      </div>
+      <div class="field-form">
+        <label for="">Tipo Usuario</label>
+        <select  name="" id="" (change)="seleccionTipo()" formControlName="idTipoUsuario">
+          <option value="empleado">Empleado</option>
+          <option value="propietario">Propietario</option>
+          <option value="mecanico">Mecánico</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row-form">
+      <div class="field-form">
+        <label for="">Nombres</label>
+        <input nz-input type="text" formControlName="nombres" />
+      </div>
+      <div class="field-form">
+        <label for="">Apellidos</label>
+        <input nz-input type="text" formControlName="apellidos" />
+      </div>
+    </div>
+    <div class="row-form">
+      <div class="field-form">
+        <label for="">Teléfono</label>
+        <input nz-input type="number" formControlName="telefono" />
+      </div>
+      <div class="field-form">
+        <label for="">Fecha nacimiento</label>
+        <input nz-input type="date" formControlName="fechaNacimiento" />
+      </div>
+    </div>
+    <div class="row-form">
+      <div class="field-form">
+        <label for="">Correo</label>
+        <input nz-input type="correo" formControlName="correo" />
+      </div>
+    </div>
+    <div class="row-form">
+      <div class="field-form">
+        <label for="">Password</label>
+        <input nz-input type="password" formControlName="password" />
+      </div>
+      <div class="field-form">
+        <label for="">Confirmar</label>
+        <input nz-input type="password" formControlName="password" />
+      </div>
+    </div>
+
+    <h3 class="titulo-form" *ngIf="mostrarPropietario == true">DATOS PROPIETARIO</h3>
+    <div class="row-form"  *ngIf="mostrarPropietario == true" [formGroup]="formGroupPropietario" >
+      <div class="field-form">
+        <label for="">Ciudad de Residencia</label>
+        <input nz-input type="text" formControlName="ciudadResidencia" />
+      </div>
+      <div class="field-form">
+        <label for="">Dirección</label>
+        <input nz-input type="text" formControlName="direccion" />
+      </div>
+    </div>
+
+
+    <h3 class="titulo-form" *ngIf="mostrarMecanico == true">DATOS MECANICO</h3>
+    <div class="row-form"  *ngIf="mostrarMecanico == true" [formGroup]="formGroupMecanico" >
+      <div class="field-form">
+        <label for="">Nivel de Estudios</label>
+        <select name="" id=""  formControlName="nivelEstudios">
+          <option value="primaria">Primaria</option>
+          <option value="bachiller">Bachiller</option>
+          <option value="tecnico">Técnico</option>
+          <option value="tecnologo">Tecnologo</option>
+          <option value="profesional">Profesional</option>
+          <option value="magister">Magister</option>
+          <option value="doctor">Doctor</option>
+        </select>
+        </div>
+        <div class="field-form">
+          <label for="">Dirección</label>
+          <input nz-input type="text" formControlName="direccion" />
+        </div>
+    </div>
+    <h3 class="titulo-form" *ngIf="mostrarEmpleado == true">DATOS EMPLEADO</h3>
+    <div class="row-form"  *ngIf="mostrarEmpleado == true" [formGroup]="formGroupEmpleado" >
+        <div class="field-form">
+          <label for="">Cargo</label>
+          <select name="" id=""  formControlName="cargo">
+            <option value="jefe-operaciones">Jefe de Operaciones</option>
+            <option value="auxiliar">Auxiliar</option>
+            <option value="secretario">Secretario</option>
+            <option value="Gerente">Gerente</option>
+          </select>
+        </div>
+        <div class="field-form">
+          <label for="">Dirección</label>
+          <input nz-input type="text" formControlName="direccion" />
+        </div>
+    </div>
+
+    <div class="buttons-form">
+      <button   nz-button nzType="primary" (click)="confirmarGuardarUsuario()">
+        Guardar
+      </button>
+      <button   nz-button nzType="primary"  (click)="confirmarGuardarUsuario()">
+        Limpiar
+      </button>
+    </div>
+  </div>
+</div>
+

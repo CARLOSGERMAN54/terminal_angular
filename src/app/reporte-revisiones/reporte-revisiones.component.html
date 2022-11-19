@@ -1,0 +1,86 @@
+<h3>LISTADO DE REVISIONES</h3>
+<div class="contenedor-busqueda">
+  <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+    <input type="text" [(ngModel)]="campoBusqueda" nz-input placeholder="Ingresa el número de placa" />
+  </nz-input-group>
+  <ng-template #suffixIconButton>
+    <button nz-button nzType="primary" (click)="buscarRevisionPorPlaca()" nzSearch><span nz-icon nzType="search"></span></button>
+  </ng-template>
+  <label>Estados</label>
+  <select [(ngModel)]="campoSeleccionado"   (change)="buscarRevisionesPorEstado()">
+    <option value="Solicitado">Solicitado</option>
+    <option value="Revision">Revision</option>
+    <option value="Pruebas">Pruebas</option>
+  </select>
+</div>
+<nz-table #basicTable [nzData]="listaDatos">
+    <thead>
+      <tr>
+        <th>Fecha Registro</th>
+        <th>Placa</th>
+        <th>Estado</th>
+        <th>Servicio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listaDatos">
+        <td>{{data.fechaRegistro}}</td>
+        <td>{{data.placa}}</td>
+        <td>{{data.idEstado}}</td>
+        <td>{{data.idServicio}}</td>
+        <td>
+          <button nz-button nzType="primary" (click)="asignarMecanico(data.idRevision)">Asignar Mecanico</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <!-------------codigo modal-------------->
+  <nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>Datos Revisiones</ng-template>
+
+  <ng-template #modalContent>
+      <div>
+        <!------------------------------------------------------------>  
+        <div class="contenedor-componente">
+          <div class="contenedor-form" [formGroup]="formGroupRevision">
+            <h3 class="titulo-form">Solicitud de Revisión</h3>
+            <div class="row-form">
+              <div class="field-form">
+                <div class="field-form">
+                  <label for="">Descripción</label>
+                  <input type="text" />
+                </div>
+                <label for="">Selecciona Mecanico</label>
+                <nz-select [(ngModel)]="mecanicoSeleccionado" nzAllowClear nzPlaceHolder="Seleccionar Mecancio" formControlName="idMecanico" > 
+                  <nz-option *ngFor="let mec of listOfDataMecanicos;" nzLabel="{{mec.idMecanico}} {{mec.nivelEstudios}}"  nzValue="{{mec.idMecanico}}">
+                  </nz-option>
+                </nz-select>
+                <div class="field-form">
+                  <label for="">Descripción</label>
+                  <textarea nz-input placeholder="Descripción" [nzAutosize]="{ minRows: 6, maxRows: 5 }" formControlName="descripcion" [(ngModel)]="descripcion"></textarea>
+                </div>
+              </div>              
+            </div>
+            <div class="buttons-form">
+              <button   nz-button nzType="primary" (click)="confirmarAsignarRevision()">
+                Asignar
+              </button>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------------------------------>
+      </div>
+    </ng-template>
+
+    <ng-template #modalFooter>
+    </ng-template>
+  </nz-modal>
+
+  

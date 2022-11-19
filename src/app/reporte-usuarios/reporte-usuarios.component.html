@@ -1,0 +1,40 @@
+<h3>USUARIOS REGISTRADOS</h3>
+<div class="contenedor-busqueda">
+  <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+    <input type="text" [(ngModel)]="campoBusqueda" nz-input placeholder="Ingresa el número de cédula" />
+  </nz-input-group>
+  <ng-template #suffixIconButton>
+    <button nz-button nzType="primary" (click)="buscarUsuarioPorCedula()" nzSearch><span nz-icon nzType="search"></span></button>
+  </ng-template>
+  <label>Tipo</label>
+  <select [(ngModel)]="campoSeleccionado"   (change)="buscarUsuariosPorTipo()">
+    <option value="propietario">Propietario</option>
+    <option value="mecanico">Mecanico</option>
+    <option value="empleado">Empleado</option>
+  </select>
+</div>
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Cedula</th>
+        <th>Nombres/Apellidos</th>
+        <th>Tipo</th>
+        <th>Contactos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.idUsuario}}</td>
+        <td>{{data.nombres}} {{data.apellidos}}</td>
+        <td>{{data.idTipoUsuario}}</td>
+        <td>Correo:{{data.correo}} Teléfono{{data.telefono}}</td>
+
+        <td>
+          <button nz-button nzType="primary">Editar</button>
+          <button nz-button nzType="primary" nzDanger>Eliminar</button>
+          <button nz-button nzType="primary">Detalle</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>

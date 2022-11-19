@@ -1,0 +1,65 @@
+
+<div class="contenedor-componente">
+    <div class="contenedor-form" [formGroup]="formGroupVehiculo">
+      <h3 class="titulo-form">REGISTRO DE VEHICULOS</h3>
+      <div class="row-form">
+        <div class="field-form">
+          <label for="">Cedula Propietario</label>
+          <input nz-input type="text" (blur)="buscarPropietario()" formControlName="idPropietario" />
+        </div>
+        <div class="field-form">
+          <label for="">Tipo Vihiculo</label>
+          <select  name="" id="" (change)="seleccionTipo()" formControlName="tipo">
+            <option value="taxi">Taxi</option>
+            <option value="camioneta">Camioneta</option>
+            <option value="camion">Camion</option>
+            <option value="buseta">Biseta</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="row-form">
+        <div class="field-form">
+          <label for="">Número Chasis</label>
+          <input nz-input type="text" formControlName="numeroChasis" />
+        </div>
+        <div class="field-form">
+          <label for="">Placa</label>
+          <input nz-input type="text" [(ngModel)]="campoBusqueda" (blur)="buscarVehiculoPorPlaca()" formControlName="placa" />
+        </div>
+      </div>
+      <div class="row-form">
+        <div class="field-form">
+          <label for="">Modelo</label>
+          <input nz-input type="text" formControlName="modelo" />
+        </div>
+        <div class="field-form">
+          <label for="">Color</label>
+          <input nz-input type="text" formControlName="color" />
+        </div>
+      </div>
+
+
+      <div class="row-form">
+        <div class="field-form">
+          <label for="">Marca</label>
+          <input nz-input type="text" formControlName="marca" />
+        </div>
+      </div>
+
+      <div class="row-form">
+        <div class="field-form">
+          <label for="">Descripción</label>
+          <textarea nz-input placeholder="Descripción del Vehiculo" [nzAutosize]="{ minRows: 3, maxRows: 5 }" formControlName="descripcion"></textarea>
+        </div>
+      </div>
+      <div class="buttons-form">
+        <button   nz-button nzType="primary" (click)="confirmarGuardarVehiculo()">
+          Guardar
+        </button>
+        <button   nz-button nzType="primary">
+          Limpiar
+        </button>
+      </div>
+    </div>
+  </div>

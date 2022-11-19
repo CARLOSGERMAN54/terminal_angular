@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+.contenedor-componente{
+    width: 100%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contenedor-form{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(225, 225, 235, 0.884);
+    justify-content: center;
+    border-radius: 5%;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+
+.titulo-form{
+
+}
+
+.row-form{
+    display: flex;
+    flex-direction: row;
+    input,select{
+        border-radius: 4px;
+        padding: 0.05em;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .row-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contenedor-form{
+       width: 70%;
+    }
+  }
+.field-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 5px;
+    input,select{
+        height: 25px;
+    }
+}
+
+.buttons-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1%; 
+}
+
+
+/* estilos plantillas */
+.logo {
+    width: 120px;
+    height: 31px;
+  
+    float: left;
+    img{
+        width: 100%;
+    }
+  }
+
+  .header-menu {
+    line-height: 64px;
+  }
+
+  .outer-content {
+    padding: 0 50px;
+  }
+
+  nz-breadcrumb {
+    margin: 16px 0;
+  }
+
+  .inner-layout {
+    padding: 24px 0;
+    background: #fff;
+  }
+
+  .sider-menu {
+    height: 100%;
+  }
+
+  .inner-content {
+    padding: 0 24px;
+    min-height: 280px;
+  }
+
+  nz-footer {
+    text-align: center;
+  }

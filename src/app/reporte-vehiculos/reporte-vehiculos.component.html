@@ -1,0 +1,100 @@
+
+<h3>VEHICULOS REGISTRADOS</h3>
+<div class="contenedor-busqueda">
+  <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+    <input type="text" [(ngModel)]="campoBusqueda" nz-input placeholder="Ingresa el número de placa" />
+  </nz-input-group>
+  <ng-template #suffixIconButton>
+    <button nz-button nzType="primary" (click)="buscarVehiculoPorPlaca()" nzSearch><span nz-icon nzType="search"></span></button>
+  </ng-template>
+</div>
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th>Marca/Modelo</th>
+        <th>Color</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.placa}}</td>
+        <td>{{data.marca}}/{{data.modelo}}</td>
+        <td>{{data.color}}</td>
+        <td>{{data.tipo}}</td>
+        <td>
+          <button nz-button nzType="primary" (click)="verDetalle(data.placa)">Detalle</button>
+          <button nz-button nzType="primary" (click)="solicitarServicio(data.idVehiculo)">Solicitar Servicio</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <!--modal para ver detalle del vehiculo-->
+ 
+  <nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>Custom Modal Title</ng-template>
+
+  <ng-template #modalContent>
+        <div *ngIf="contenidoModalDetalle==true">
+          <h2>Detalle Vehiculo de placa {{datosVehiculo.placa}}</h2>
+          <p>Numero Chasis:{{datosVehiculo.numeroChasis}}</p>
+          <p>Marca:{{datosVehiculo.marca}}</p>
+          <p>Modelo:{{datosVehiculo.modelo}}</p>
+          <p>Color:{{datosVehiculo.color}}</p>
+          <p>Tipo:{{datosVehiculo.tipo}}</p>
+          <p>Descripción</p>
+           <textarea nz-input  [nzAutosize]="{ minRows: 3, maxRows: 5 }" >{{datosVehiculo.descripcion}}</textarea>
+      </div>
+      <div *ngIf="contenidoModalServicio==true">
+        <!------------------------------------------------------------>  
+        <div class="contenedor-componente">
+          <div class="contenedor-form" [formGroup]="formGroupRevision" >
+            <h3 class="titulo-form">Solicitud de Revisión</h3>
+            <div class="row-form">
+              <div class="field-form">
+                <label for="">Sede</label>
+                <nz-select [(ngModel)]="sedeSeleccionada" nzAllowClear nzPlaceHolder="Seleccionar Sede" formControlName="idSede" > 
+                  <nz-option *ngFor="let sed of listOfDataSedes;" nzLabel="{{sed.sede}}"  nzValue="{{sed.idSede}}">
+                  </nz-option>
+                </nz-select>
+                <label for="">Servicio</label>
+                <nz-select [(ngModel)]="servicioSeleccionado" nzAllowClear nzPlaceHolder="Selecccionar Servicio" formControlName="idServicio" > 
+                  <nz-option *ngFor="let ser of listOfDataServicios;" nzLabel="{{ser.servicio}}"  nzValue="{{ser.idServicio}}">
+                  </nz-option>
+                </nz-select>
+                <label for="">Estado</label>
+                <nz-select [(ngModel)]="estadoSeleccionado" nzAllowClear nzPlaceHolder="Selecccionar Estado" formControlName="idEstado" > 
+                  <nz-option *ngFor="let est of listOfDataEstados;" nzLabel="{{est.estado}}"  nzValue="{{est.idEstado}}">
+                  </nz-option>
+                </nz-select>
+                <div class="field-form">
+                  <label for="">Descripción</label>
+                  <textarea nz-input placeholder="Descripción del Vehiculo" [nzAutosize]="{ minRows: 6, maxRows: 5 }" formControlName="descripcion"></textarea>
+                </div>
+              </div>              
+            </div>
+            
+            <div class="buttons-form">
+              <button   nz-button nzType="primary" (click)="confirmarGuardarRevision()">
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+        <!------------------------------------------------------------>
+      </div>
+    </ng-template>
+
+    <ng-template #modalFooter>
+    </ng-template>
+  </nz-modal>
+
+    
